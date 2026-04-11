@@ -5,40 +5,57 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const LONG_PRESS_MS = 500; // ms before long-press fires
 
-export default function DateCell({ 
+export default function DateCell({
   phase,
-  dayInfo, 
-  selectionStart, 
-  selectionEnd, 
-  hoverDate, 
-  onClick, 
+  dayInfo,
+  selectionStart,
+  selectionEnd,
+  hoverDate,
+  onClick,
   onHover,
   onRightClick,
   allNotes,
   eventsArr
 }) {
   const { dateObj, timestamp, dayNum, isToday, isCurrentMonth } = dayInfo;
-  
+
   const cellRef = useRef(null);
   const [centerOffset, setCenterOffset] = useState({ x: 0, y: 0 });
 
+  // ── Target Logic (moved up to avoid TDZ) ─────────────────────
+  const isTarget = Number(dayNum) === 30 && isCurrentMonth;
+  const notesKey = `date_${format(dateObj, 'yyyy-MM-dd')}`;
+  const cellNote = allNotes?.[notesKey];
+  const hasNote = cellNote && cellNote.trim() !== '';
+
+  const d = dateObj.getDate();
+  const m = dateObj.getMonth() + 1;
+  const y = dateObj.getFullYear();
+  const todaysEvObj = (eventsArr || []).find(e => e.day === d && e.month === m && e.year === y);
+  const eventCount = todaysEvObj ? todaysEvObj.events.length : 0;
+  const hasEvents = eventCount > 0;
+
   useEffect(() => {
-    if (phase === "zoom" && cellRef.current) {
+    if (phase === "zoom" && cellRef.current && isTarget) {
       const rect = cellRef.current.getBoundingClientRect();
+      
+      // Find the center of the specific DateCell
       const elCenterX = rect.left + rect.width / 2;
       const elCenterY = rect.top + rect.height / 2;
+      
+      // Find the center of the screen
       const targetX = window.innerWidth / 2;
       const targetY = window.innerHeight / 2;
-      // We calculate exactly how many pixels to drift before scaling dominates
-      setCenterOffset({ 
-        x: targetX - elCenterX, 
-        y: targetY - elCenterY 
+
+      setCenterOffset({
+        x: targetX - elCenterX,
+        y: targetY - elCenterY
       });
-    } else {
+    } else if (phase !== "zoom") {
       setCenterOffset({ x: 0, y: 0 });
     }
-  }, [phase]);
-  
+  }, [phase, isTarget]);
+
   const particles = useMemo(() => {
     return [...Array(15)].map(() => ({
       rx: (Math.random() - 0.5) * 600,
@@ -47,7 +64,7 @@ export default function DateCell({
       size: Math.random() * 8 + 4
     }));
   }, []);
-  
+
   const monthIndex = dateObj.getMonth();
   const dayOfMonth = dateObj.getDate();
   const holidayEmoji = holidays[`${monthIndex}-${dayOfMonth}`];
@@ -142,24 +159,10 @@ export default function DateCell({
     }
   }
 
-  // ── Indicators ───────────────────────────────────────────────
-  const notesKey = `date_${format(dateObj, 'yyyy-MM-dd')}`;
-  const cellNote = allNotes?.[notesKey];
-  const hasNote = cellNote && cellNote.trim() !== '';
-
-  const d = dateObj.getDate();
-  const m = dateObj.getMonth() + 1;
-  const y = dateObj.getFullYear();
-  const todaysEvObj = (eventsArr || []).find(e => e.day === d && e.month === m && e.year === y);
-  const eventCount = todaysEvObj ? todaysEvObj.events.length : 0;
-  const hasEvents = eventCount > 0;
-
-  const isTarget = Number(dayNum) === 15 && isCurrentMonth;
-
   return (
-    <motion.div 
+    <motion.div
       ref={cellRef}
-      className={classNames.join(' ')} 
+      className={classNames.join(' ')}
       onClick={handleClick}
       onMouseEnter={() => onHover(dateObj)}
       onContextMenu={handleContextMenu}
@@ -169,33 +172,67 @@ export default function DateCell({
       animate={
         isTarget
           ? phase === "zoom"
-            ? { scale: 100, rotate: 5, x: centerOffset.x, y: centerOffset.y, zIndex: 99999, background: "#fff", boxShadow: "0 0 0px red" }
+            ? { 
+                x: centerOffset.x, 
+                y: centerOffset.y,
+                // Morph into a perfect sphere as we zoom
+                borderRadius: ["10px", "50%", "50%"],
+                scale: [1, 1.5, 5, 80],
+                rotate: [0, 0, 2],
+                zIndex: 99999,
+                background: "#c9b896",
+                boxShadow: "0 0 100px rgba(201, 184, 150, 0.6)",
+              }
             : phase === "animate"
-            ? { scale: [1, 1.3, 1], boxShadow: ["0 0 5px red", "0 0 20px red", "0 0 50px red"], x: 0, y: 0 }
-            : { scale: 1, x: 0, y: 0 }
+              ? { 
+                  scale: [1, 1.3, 1], 
+                  boxShadow: ["0 0 5px #d32f2f", "0 0 30px #d32f2f", "0 0 10px #d32f2f"],
+                  borderRadius: "10px",
+                  x: 0, y: 0 
+                }
+              : { scale: 1, x: 0, y: 0, borderRadius: "10px", background: "var(--paper-bg)" }
           : {}
       }
       transition={
-        isTarget && phase === "animate"
-          ? { scale: { duration: 0.6, repeat: 1 }, boxShadow: { duration: 1.2 } }
-          : phase === "zoom"
-          ? { duration: 2, ease: "easeIn" }
-          : { duration: 0.4 }
+        isTarget && phase === "zoom"
+          ? {
+              x: { duration: 1.2, ease: [0.43, 0.13, 0.23, 0.96] },
+              y: { duration: 1.2, ease: [0.43, 0.13, 0.23, 0.96] },
+              scale: { 
+                times: [0, 0.3, 0.6, 1],
+                duration: 2.2, 
+                ease: "easeInOut" 
+              },
+              borderRadius: { duration: 0.6 },
+              background: { duration: 0.8 }
+            }
+          : isTarget && phase === "animate"
+            ? { scale: { duration: 0.6, repeat: 1 }, boxShadow: { duration: 1.2 } }
+            : { duration: 0.4 }
       }
-      style={isTarget ? { position: 'relative', zIndex: (phase === "zoom" || phase === "animate") ? 50 : 1, transformOrigin: 'center', background: phase === 'zoom' ? '#fff' : undefined } : {}}
+      style={isTarget ? { 
+        position: 'relative', 
+        zIndex: (phase === "zoom" || phase === "animate") ? 1000 : 1, 
+        transformOrigin: 'center',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+      } : {}}
     >
       {/* Background Dim Spotlight */}
       <AnimatePresence>
         {isTarget && (phase === "animate" || phase === "zoom") && (
           <motion.div
             initial={{ opacity: 0 }}
-            animate={{ opacity: phase === "animate" ? 1 : 0 }}
+            animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             style={{
               position: "absolute", top: "50%", left: "50%",
-              width: "4000px", height: "4000px",
+              width: "500vw", height: "500vh",
               transform: "translate(-50%, -50%)",
-              background: "radial-gradient(circle at center, transparent 60px, rgba(0,0,0,0.8) 120px, rgba(0,0,0,0.9) 200px, rgba(0,0,0,0.9) 100%)",
+              background: phase === "zoom" 
+                ? "radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.95) 15%, #000 40%)"
+                : "radial-gradient(circle at center, transparent 60px, rgba(0,0,0,0.8) 120px, rgba(0,0,0,0.9) 200px, rgba(0,0,0,0.9) 100%)",
               pointerEvents: "none",
               zIndex: -1
             }}
@@ -206,9 +243,9 @@ export default function DateCell({
       {/* Circle animation via SVG inside AnimatePresence */}
       <AnimatePresence>
         {isTarget && phase === "animate" && (
-          <svg 
-            style={{ 
-              position: 'absolute', top: '50%', left: '50%', 
+          <svg
+            style={{
+              position: 'absolute', top: '50%', left: '50%',
               width: '100px', height: '100px', transform: 'translate(-50%, -50%)',
               zIndex: 100,
               pointerEvents: 'none'
@@ -270,7 +307,22 @@ export default function DateCell({
       </AnimatePresence>
 
       {holidayEmoji && <span className="holiday-marker">{holidayEmoji}</span>}
-      <span className="date-num">{dayNum}</span>
+      
+      <motion.span 
+        className="date-num"
+        animate={isTarget && phase === "zoom" ? {
+          scale: [1, 1.2, 5, 20],
+          opacity: [1, 1, 0.8, 0],
+          color: "#fff"
+        } : {}}
+        transition={isTarget && phase === "zoom" ? {
+          duration: 2.2,
+          times: [0, 0.3, 0.6, 1],
+          ease: "easeInOut"
+        } : {}}
+      >
+        {dayNum}
+      </motion.span>
 
       {/* Emoji-only indicators */}
       {(hasNote || hasEvents) && (

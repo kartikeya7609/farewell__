@@ -2,8 +2,8 @@ import { useState, useEffect, useMemo, useCallback } from 'react';
 import { addMonths, subMonths, format } from 'date-fns';
 
 export function useCalendar() {
-  const [currentDate, setCurrentDate] = useState(new Date());
-  const [selectionStart, setSelectionStart] = useState(null);
+  const [currentDate, setCurrentDate] = useState(new Date(2026, 3, 30)); // April 30, 2026
+  const [selectionStart, setSelectionStart] = useState(new Date(2026, 3, 30));
   const [selectionEnd, setSelectionEnd] = useState(null);
   const [hoverDate, setHoverDate] = useState(null);
   const [isAnimating, setIsAnimating] = useState(false);

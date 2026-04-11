@@ -1,0 +1,251 @@
+/* ════════════════════════════════════════
+   CALENDAR DESIGN SYSTEM (DARK & GOLD)
+   ════════════════════════════════════════ */
+:root {
+  --bg-deep: #050507;
+  --bg-surface: #0a0a0a;
+  --accent-gold: #c9b896;
+  --accent-gold-dim: rgba(201, 184, 150, 0.45);
+  --text-primary: #f0ede8;
+  --text-muted: rgba(240, 237, 232, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --grid-line: rgba(255, 255, 255, 0.04);
+}
+
+.calendar-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.calendar-container {
+  width: min(900px, 100%);
+  background: var(--bg-surface);
+  border: 1px solid var(--glass-border);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(20px);
+}
+
+/* ── PHOTO SECTION ── */
+.calendar-photo-section {
+  width: 40%;
+  position: relative;
+  background: var(--bg-deep);
+  border-right: 1px solid var(--glass-border);
+}
+
+.calendar-photo-section .image-inset {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.calendar-photo-section .hero-image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.6 !important;
+  filter: saturate(0.5);
+  transition: all 0.8s ease;
+}
+
+.calendar-photo-section .image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(0,0,0,0.4) 0%, transparent 100%),
+              linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 40%);
+  z-index: 2;
+}
+
+.month-hero-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--accent-gold);
+  z-index: 5;
+  text-align: center;
+  width: 100%;
+  letter-spacing: 4px;
+  text-shadow: 0 0 30px rgba(201, 184, 150, 0.4);
+}
+
+/* ── GRID SECTION ── */
+.calendar-grid-section {
+  width: 60%;
+  padding: 2.5rem 3rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.current-month-year {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.nav-btn {
+  background: transparent;
+  border: 1px solid var(--glass-border);
+  color: var(--text-muted);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+  background: rgba(201, 184, 150, 0.05);
+}
+
+/* ── CALENDAR GRID ── */
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.weekdays div {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: var(--accent-gold-dim);
+  font-weight: 500;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+
+.day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  font-weight: 300;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid transparent;
+  position: relative;
+}
+
+.day:hover {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: var(--glass-border);
+}
+
+.day.other-month {
+  opacity: 0.15;
+}
+
+.day.today {
+  color: var(--accent-gold);
+  font-weight: 500;
+}
+
+.day.today::after {
+  content: '';
+  position: absolute;
+  bottom: 6px;
+  width: 4px;
+  height: 4px;
+  background: var(--accent-gold);
+  border-radius: 50%;
+}
+
+/* Range highlighting */
+.day.range-start,
+.day.range-end {
+  background: var(--accent-gold) !important;
+  color: #000 !important;
+  font-weight: 600;
+}
+
+.day.in-range {
+  background: rgba(201, 184, 150, 0.12);
+  color: var(--accent-gold);
+}
+
+/* ── TARGET BLINKING (APRIL 30) ── */
+.day[style*="z-index: 1000"] {
+  border: 1.5px solid var(--accent-gold) !important;
+  box-shadow: 0 0 20px rgba(201, 184, 150, 0.3);
+  background: rgba(201, 184, 150, 0.1) !important;
+  z-index: 1000 !important;
+}
+
+/* Focus Blur effect from previous design */
+.calendar-grid:has(.day[style*="z-index: 1000"]) .day:not([style*="z-index: 1000"]) {
+  filter: blur(4px);
+  opacity: 0.1;
+}
+
+/* ── RESPONSIVENESS ── */
+@media screen and (max-width: 768px) {
+  .calendar-container {
+    flex-direction: column;
+  }
+  .calendar-photo-section {
+    width: 100%;
+    height: 200px;
+    border-right: none;
+    border-bottom: 1px solid var(--glass-border);
+  }
+  .calendar-grid-section {
+    width: 100%;
+    padding: 1.5rem 2rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .calendar-grid-section {
+    padding: 1.2rem;
+  }
+  .days {
+    gap: 4px;
+  }
+}
+
+/* Unnecessary things removal via CSS safely just in case */
+.calendar-controls, 
+.theme-toggle,
+.spirals,
+.calendar-notes {
+  display: none !important;
+}
