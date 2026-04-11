@@ -196,19 +196,19 @@ export default function DateCell({
       transition={
         isTarget && phase === "zoom"
           ? {
-              x: { duration: 1.2, ease: [0.43, 0.13, 0.23, 0.96] },
-              y: { duration: 1.2, ease: [0.43, 0.13, 0.23, 0.96] },
+              x: { duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] },
+              y: { duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] },
               scale: { 
                 times: [0, 0.3, 0.6, 1],
-                duration: 2.2, 
+                duration: 1.1, 
                 ease: "easeInOut" 
               },
-              borderRadius: { duration: 0.6 },
-              background: { duration: 0.8 }
+              borderRadius: { duration: 0.3 },
+              background: { duration: 0.4 }
             }
           : isTarget && phase === "animate"
-            ? { scale: { duration: 0.6, repeat: 1 }, boxShadow: { duration: 1.2 } }
-            : { duration: 0.4 }
+            ? { scale: { duration: 0.3, repeat: 1 }, boxShadow: { duration: 0.6 } }
+            : { duration: 0.2 }
       }
       style={isTarget ? { 
         position: 'relative', 
@@ -259,7 +259,7 @@ export default function DateCell({
               initial={{ pathLength: 0, rotate: -90 }}
               animate={{ pathLength: 1 }}
               exit={{ opacity: 0, scale: 0 }}
-              transition={{ duration: 0.6, ease: "easeInOut" }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
               style={{ filter: 'drop-shadow(0 0 5px rgba(211, 47, 47, 0.8))' }}
             />
           </svg>
@@ -272,7 +272,7 @@ export default function DateCell({
           <motion.div
             initial={{ scale: 1, opacity: 0.6 }}
             animate={{ scale: 8, opacity: 0 }}
-            transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+            transition={{ duration: 0.4, delay: 0.3, ease: "easeOut" }}
             style={{
               position: "absolute", top: "50%", left: "50%",
               width: "60px", height: "60px",
@@ -294,7 +294,7 @@ export default function DateCell({
                 key={i}
                 initial={{ opacity: 0, scale: 0, x: p.rx, y: p.ry }}
                 animate={{ opacity: [0, 1, 0], scale: [3, 1, 0], x: 0, y: 0 }}
-                transition={{ duration: 1, delay: p.delay, ease: "easeIn" }}
+                transition={{ duration: 0.5, delay: p.delay / 2, ease: "easeIn" }}
                 style={{
                   position: 'absolute', top: '-4px', left: '-4px',
                   width: `${p.size}px`, height: `${p.size}px`, borderRadius: '50%',
@@ -316,7 +316,7 @@ export default function DateCell({
           color: "#fff"
         } : {}}
         transition={isTarget && phase === "zoom" ? {
-          duration: 2.2,
+          duration: 1.1,
           times: [0, 0.3, 0.6, 1],
           ease: "easeInOut"
         } : {}}

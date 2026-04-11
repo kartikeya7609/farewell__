@@ -36,15 +36,15 @@ function App() {
 
   const runCinematicSequence = async () => {
     setPhase('loading');
-    await wait(2500);
+    await wait(1250);
     setPhase('calendar');
-    await wait(2800);
+    await wait(1400);
     setPhase('animate');
-    await wait(2500);
+    await wait(1250);
     setPhase('zoom');
-    await wait(2000);
+    await wait(1000);
     setPhase('loading2');
-    await wait(2000);
+    await wait(1000);
     setPhase('parallax');
   };
 

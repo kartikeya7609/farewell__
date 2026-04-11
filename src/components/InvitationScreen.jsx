@@ -8,7 +8,7 @@ const InvitationScreen = ({ setPhase }) => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 1.2, ease: 'easeOut' }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
       style={{
         width: '100vw',
         minHeight: '100vh',
@@ -120,7 +120,7 @@ const InvitationScreen = ({ setPhase }) => {
           className="inv-left-panel"
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1.2, delay: 0.3, ease: 'easeOut' }}
+          transition={{ duration: 0.6, delay: 0.15, ease: 'easeOut' }}
           style={{
             flex: 1,
             display: 'flex',
@@ -134,7 +134,7 @@ const InvitationScreen = ({ setPhase }) => {
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
+            transition={{ delay: 0.3, duration: 0.4 }}
             style={{
               fontSize: 10, letterSpacing: 6, color: '#1a237e',
               textTransform: 'uppercase', margin: '0 0 28px',
@@ -150,7 +150,7 @@ const InvitationScreen = ({ setPhase }) => {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 1.0, ease: 'easeOut' }}
+            transition={{ delay: 0.25, duration: 0.5, ease: 'easeOut' }}
             style={{
               fontFamily: "'Playfair Display', serif",
               fontSize: 'clamp(2.8rem, 6vw, 5rem)',
@@ -192,7 +192,7 @@ const InvitationScreen = ({ setPhase }) => {
           <motion.blockquote
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.9, duration: 1.0 }}
+            transition={{ delay: 0.45, duration: 0.5 }}
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontSize: '1.2rem',
@@ -240,7 +240,7 @@ const InvitationScreen = ({ setPhase }) => {
           className="inv-right-panel"
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1.2, delay: 0.4, ease: 'easeOut' }}
+          transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
           style={{
             width: 320,
             display: 'flex',
@@ -257,7 +257,7 @@ const InvitationScreen = ({ setPhase }) => {
             Continue to
           </p>
 
-          <button className="inv-btn inv-btn-primary" onClick={() => setPhase('calendar')}>
+          <button className="inv-btn inv-btn-primary" >
             Invitation Card
             <span className="inv-btn-arrow">→</span>
           </button>
@@ -279,7 +279,7 @@ const InvitationScreen = ({ setPhase }) => {
           }}>
             <p style={{
               fontSize: 9, letterSpacing: 3,
-              color: 'var(--accent-trace)',
+              color: 'var(--accent)',
               textTransform: 'uppercase', fontWeight: 300,
               lineHeight: 2.2, margin: 0,
             }}>
