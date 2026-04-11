@@ -1,0 +1,598 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --accent: #14ff72;
+    --accent-glow: rgba(20, 255, 114, 0.4);
+    --glass: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.15);
+    --depth-shadow: 0 50px 100px rgba(0, 0, 0, 0.9);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body,
+html {
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: #000 !important;
+    color: #eee;
+    font-family: 'Poppins', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    width: 100%;
+    min-height: 100%;
+}
+
+#root {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100vw;
+    min-height: 100vh;
+}
+
+/* ── LOADER ── */
+.loader-container {
+    background: #000;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+}
+
+.loader-text {
+    font-family: 'Brush Script MT', cursive;
+    font-size: clamp(3rem, 10vw, 5rem);
+    letter-spacing: 2px;
+    background: linear-gradient(to bottom, #fff, #555);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.loader-bar {
+    width: 240px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.05);
+    margin-top: 30px;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.loader-bar::after {
+    content: '';
+    position: absolute;
+    left: -40%;
+    width: 40%;
+    height: 100%;
+    background: var(--accent);
+    box-shadow: 0 0 15px var(--accent);
+    animation: load 1.8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes load {
+    to {
+        left: 100%;
+    }
+}
+
+/* ── FRONT PAGE ── */
+.front-page {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('/image/img2.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.front-page::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.8) 100%);
+    z-index: 1;
+}
+
+.bank-card {
+    position: relative;
+    z-index: 10;
+    background: rgba(10, 10, 10, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: clamp(2.5rem, 5vw, 4rem);
+    border-radius: 2.5rem;
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    width: 440px;
+    max-width: 90%;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
+    text-align: center;
+}
+
+.bank-header h3 {
+    font-size: 2.5rem;
+    margin: 0;
+    letter-spacing: 2px;
+    background: linear-gradient(to right, #fff, #bbb);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.bank-header p {
+    color: #888;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    margin: 5px 0 40px 0;
+}
+
+.bank-input {
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+.bank-input label {
+    display: block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-left: 15px;
+    margin-bottom: 8px;
+    letter-spacing: 2px;
+    transition: color 0.3s;
+}
+
+.bank-input input {
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-family: inherit;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.bank-input input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px var(--accent-glow);
+}
+
+.withdraw-btn {
+    width: 100%;
+    padding: 18px;
+    border-radius: 12px;
+    border: 1px solid var(--accent);
+    background: transparent;
+    color: var(--accent);
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.withdraw-btn:hover {
+    background: var(--accent);
+    color: #000;
+    box-shadow: 0 0 30px var(--accent-glow);
+}
+
+/* ── SLIDER ── */
+.slider {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+.slider .list {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.slider .list .item {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(100%);
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s;
+}
+
+.slider .list .item:first-child {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0);
+}
+
+.slider.next .list .item:first-child {
+    animation: slideOutLeft 0.8s forwards;
+}
+
+.slider.next .list .item:nth-child(2) {
+    animation: slideInRight 0.8s forwards;
+}
+
+.slider.prev .list .item:first-child {
+    animation: slideOutRight 0.8s forwards;
+}
+
+.slider.prev .list .item:last-child {
+    animation: slideInLeft 0.8s forwards;
+}
+
+@keyframes slideOutLeft {
+    to {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.slider .list .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7) contrast(1.1) saturate(1.1);
+}
+
+.slider .list .item .content {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(1140px, 80%);
+    padding: 40px;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, transparent 100%);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    color: #fff;
+}
+
+.slider .list .item .content .title {
+    font-family: 'Georgia', serif;
+    font-size: clamp(2rem, 10vw, 6rem);
+    line-height: 1;
+    margin-bottom: 10px;
+    background: linear-gradient(to bottom, #fff, #bbb);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.slider .list .item .content .type {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    color: var(--accent);
+    margin-bottom: 20px;
+}
+
+.slider .list .item .content .description {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.75);
+    max-width: 500px;
+    margin-bottom: 30px;
+}
+
+.slider .list .item .content .button button {
+    padding: 14px 32px;
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-family: inherit;
+    font-weight: 600;
+    letter-spacing: 3px;
+    font-size: 0.8rem;
+    border-radius: 10px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.slider .list .item .content .button button:hover {
+    background: var(--accent);
+    color: #000;
+    box-shadow: 0 0 25px var(--accent-glow);
+}
+
+/* FIX: was missing transform: translateX(-50%) */
+.thumbnail {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+    z-index: 100;
+}
+
+.thumbnail .item {
+    width: 150px;
+    height: 220px;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 2px solid var(--glass-border);
+    transition: transform 0.3s, border-color 0.3s;
+    flex-shrink: 0;
+}
+
+.thumbnail .item:first-child {
+    border-color: var(--accent);
+}
+
+.thumbnail .item:hover {
+    transform: translateY(-10px) scale(1.05);
+}
+
+.thumbnail .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.nextPrevArrows {
+    position: absolute;
+    bottom: calc(50px + 220px + 20px);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    display: flex;
+    gap: 12px;
+}
+
+.nextPrevArrows button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(15px);
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s, transform 0.2s;
+}
+
+.nextPrevArrows button:hover {
+    background: var(--accent);
+    color: #000;
+    transform: scale(1.15);
+}
+
+/* ══════════════════════════════════════════════════
+   PARALLAX — correct implementation
+   
+   KEY RULES:
+   1. .parallax-container is a plain block div.
+      NO overflow:hidden. The WINDOW is the scroller.
+   2. .parallax-bg has NO background-* CSS rules here.
+      They MUST be inline in App.jsx because framer-motion's
+      style={} prop takes ownership of all CSS on the element.
+   3. Each .parallax-section clips its own overflow so the
+      oversized parallax-bg doesn't bleed into neighbours.
+══════════════════════════════════════════════════ */
+.parallax-container {
+    display: block;
+    width: 100vw;
+    background: #000;
+    /* NO overflow:hidden here — window must scroll freely */
+}
+
+.parallax-section {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    /* clips the oversized parallax-bg */
+    perspective: 1200px;
+}
+
+/* Background layer: positioned absolute, oversized vertically.
+   background-size, background-position, backgroundImage
+   are ALL set inline in App.jsx (framer-motion requirement). */
+.parallax-bg {
+    position: absolute;
+    top: -30%;
+    left: 0;
+    width: 100%;
+    height: 160%;
+    /* extra height for parallax range */
+    z-index: 1;
+    transform-style: preserve-3d;
+    transform-origin: center center;
+}
+
+.parallax-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.65) 0%,
+            rgba(0, 0, 0, 0.15) 50%,
+            rgba(0, 0, 0, 0.75) 100%);
+    pointer-events: none;
+}
+
+.parallax-fg {
+    position: absolute;
+    bottom: -10%;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    background: radial-gradient(circle at 50% 100%,
+            rgba(20, 255, 114, 0.06) 0%,
+            transparent 70%);
+    z-index: 3;
+    pointer-events: none;
+    mix-blend-mode: screen;
+}
+
+.parallax-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: clamp(2rem, 5vw, 4rem) clamp(1.5rem, 5vw, 5rem);
+    border-radius: 30px;
+    background: linear-gradient(135deg, rgba(15, 15, 15, 0.55) 0%, rgba(0, 0, 0, 0.75) 100%);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--depth-shadow);
+    max-width: min(800px, 85vw);
+}
+
+.parallax-text {
+    font-family: 'Georgia', serif;
+    font-size: clamp(2.5rem, 8vw, 5.5rem);
+    font-weight: 700;
+    margin: 0 0 0.25em;
+    letter-spacing: -1px;
+    background: linear-gradient(to bottom, #fff 40%, #888 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.parallax-subtext {
+    font-size: clamp(0.9rem, 2vw, 1.3rem);
+    color: var(--accent);
+    margin-top: 16px;
+    font-weight: 500;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+/* Animated streak on the final "Welcome" section */
+.particle-streak {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 300px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    box-shadow: 0 0 20px var(--accent);
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.cinematic-glow {
+    animation: glow-pulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes glow-pulse {
+    from {
+        filter: drop-shadow(0 0 8px rgba(20, 255, 114, 0.15));
+    }
+
+    to {
+        filter: drop-shadow(0 0 28px rgba(20, 255, 114, 0.5));
+    }
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #222;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+}
+
+/* ── Responsive ── */
+@media screen and (max-width: 768px) {
+    .slider .list .item .content {
+        top: 10%;
+        padding: 25px;
+        width: 90%;
+    }
+
+    .thumbnail {
+        bottom: 20px;
+        gap: 10px;
+    }
+
+    .thumbnail .item {
+        width: 100px;
+        height: 150px;
+    }
+
+    .nextPrevArrows {
+        bottom: calc(20px + 150px + 16px);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .slider .list .item .content .title {
+        font-size: 2.2rem;
+    }
+
+    .thumbnail .item {
+        width: 80px;
+        height: 120px;
+    }
+}
