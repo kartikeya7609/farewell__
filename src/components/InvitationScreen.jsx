@@ -28,8 +28,8 @@ const InvitationScreen = ({ setPhase }) => {
           width: 100%;
           padding: 16px 24px;
           background: transparent;
-          border: 0.5px solid rgba(255,255,255,0.18);
-          color: rgba(255,255,255,0.7);
+          border: 0.5px solid rgba(201,184,150,0.18);
+          color: var(--accent-dim);
           font-family: 'Montserrat', sans-serif;
           font-size: 9px;
           letter-spacing: 5px;
@@ -136,13 +136,13 @@ const InvitationScreen = ({ setPhase }) => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6, duration: 0.8 }}
             style={{
-              fontSize: 10, letterSpacing: 6, color: '#9e8f73',
+              fontSize: 10, letterSpacing: 6, color: '#1a237e',
               textTransform: 'uppercase', margin: '0 0 28px',
-              fontWeight: 300,
+              fontWeight: 500,
               display: 'flex', alignItems: 'center', gap: 12,
             }}
           >
-            <span style={{ display: 'block', width: 32, height: '0.5px', background: '#9e8f73' }} />
+            <span style={{ display: 'block', width: 32, height: '0.5px', background: '#1a237e' }} />
             IEEE · NIT Durgapur · 2026
           </motion.p>
 
@@ -155,7 +155,7 @@ const InvitationScreen = ({ setPhase }) => {
               fontFamily: "'Playfair Display', serif",
               fontSize: 'clamp(2.8rem, 6vw, 5rem)',
               fontWeight: 400,
-              color: '#f0ebe0',
+              color: 'var(--accent)',
               lineHeight: 1.08,
               margin: '0 0 10px',
               letterSpacing: '-0.5px',
@@ -170,7 +170,7 @@ const InvitationScreen = ({ setPhase }) => {
           <p style={{
             fontFamily: "'Cormorant Garamond', serif",
             fontSize: '1.1rem',
-            color: 'rgba(255,255,255,0.35)',
+            color: 'var(--accent-dim)',
             fontWeight: 300,
             letterSpacing: 1,
             margin: '0 0 48px',
@@ -197,7 +197,7 @@ const InvitationScreen = ({ setPhase }) => {
               fontFamily: "'Cormorant Garamond', serif",
               fontSize: '1.2rem',
               fontStyle: 'italic',
-              color: 'rgba(240,235,224,0.6)',
+              color: 'var(--accent-dim)',
               lineHeight: 1.8,
               fontWeight: 300,
               margin: '0 0 48px',
@@ -216,8 +216,8 @@ const InvitationScreen = ({ setPhase }) => {
               { label: 'Occasion', value: 'Farewell 2025 – 26' },
             ].map(({ label, value }) => (
               <div key={label} style={{ marginBottom: 16 }}>
-                <p style={{ fontSize: 9, letterSpacing: 4, color: 'rgba(255,255,255,0.28)', textTransform: 'uppercase', fontWeight: 300, margin: 0 }}>{label}</p>
-                <p style={{ fontSize: 13, letterSpacing: 2, color: 'rgba(255,255,255,0.58)', fontWeight: 300, margin: '4px 0 0' }}>{value}</p>
+                <p style={{ fontSize: 9, letterSpacing: 4, color: 'var(--accent-trace)', textTransform: 'uppercase', fontWeight: 300, margin: 0 }}>{label}</p>
+                <p style={{ fontSize: 13, letterSpacing: 2, color: 'var(--accent-dim)', fontWeight: 300, margin: '4px 0 0' }}>{value}</p>
               </div>
             ))}
           </div>
@@ -279,7 +279,7 @@ const InvitationScreen = ({ setPhase }) => {
           }}>
             <p style={{
               fontSize: 9, letterSpacing: 3,
-              color: 'rgba(255,255,255,0.2)',
+              color: 'var(--accent-trace)',
               textTransform: 'uppercase', fontWeight: 300,
               lineHeight: 2.2, margin: 0,
             }}>

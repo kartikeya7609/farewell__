@@ -35,12 +35,10 @@ const ImageSlider = ({ items, slideDir, moveSlider }) => {
           >
             <img src={item.img} alt={item.type} />
             <div className="content">
-              <div className="type">{item.type}</div>
-              <div className="title">{item.title}</div>
-              <div className="description">{item.desc}</div>
+              <div className="title">Farewell</div>
               
-              <div className="scroll-down-hint" style={{ marginTop: '20px' }}>
-                <span style={{ fontSize: '14px' }}>↓</span>
+              <div className="scroll-down-hint">
+                <span>↓</span>
                 <span>Scroll to enter</span>
               </div>
             </div>

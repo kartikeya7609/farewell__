@@ -140,8 +140,8 @@
   font-size: 0.6rem;
   text-transform: uppercase;
   letter-spacing: 4px;
-  color: var(--accent-gold-dim);
-  font-weight: 500;
+  color: #1a237e; /* Midnight Blue */
+  font-weight: 600;
 }
 
 .days {
