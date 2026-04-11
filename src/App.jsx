@@ -13,10 +13,10 @@ import InvitationScreen from './components/InvitationScreen';
 import './styles/calendar.css';
 
 const initialItems = [
-  { id: 1, img: '/Farewell/image/img1.jpg', title: 'Farewell', type: 'FLOWER', desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti temporibus quis eum consequuntur voluptate quae doloribus distinctio.' },
-  { id: 2, img: '/Farewell/image/img2.jpg', title: 'Farewell', type: 'NATURE', desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti temporibus quis eum consequuntur voluptate quae doloribus distinctio.' },
-  { id: 3, img: '/Farewell/image/img4.jpg', title: 'Farewell', type: 'PLANT', desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti temporibus quis eum consequuntur voluptate quae doloribus distinctio.' },
-  { id: 4, img: '/Farewell/image/img3.jpg', title: 'Farewell', type: 'NATURE', desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti temporibus quis eum consequuntur voluptate quae doloribus distinctio.' },
+  { id: 1, img: '/image/img1.jpg', title: 'Farewell', type: 'FLOWER', desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti temporibus quis eum consequuntur voluptate quae doloribus distinctio.' },
+  { id: 2, img: '/image/img2.jpg', title: 'Farewell', type: 'NATURE', desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti temporibus quis eum consequuntur voluptate quae doloribus distinctio.' },
+  { id: 3, img: '/image/img4.jpg', title: 'Farewell', type: 'PLANT', desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti temporibus quis eum consequuntur voluptate quae doloribus distinctio.' },
+  { id: 4, img: '/image/img3.jpg', title: 'Farewell', type: 'NATURE', desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti temporibus quis eum consequuntur voluptate quae doloribus distinctio.' },
 ];
 
 const wait = (ms) => new Promise((res) => setTimeout(res, ms));
