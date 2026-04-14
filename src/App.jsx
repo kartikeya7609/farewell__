@@ -2,6 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import './index.css';
 
+// Import Images directly for Vite to bundle them
+import img1 from '../image/img1.jpg';
+import img2 from '../image/img2.jpg';
+import img3 from '../image/img3.jpg';
+import img4 from '../image/img4.jpg';
+
 // Components
 import Calendar from './components/Calendar';
 import VaultLogin from './components/VaultLogin';
@@ -13,10 +19,10 @@ import InvitationScreen from './components/InvitationScreen';
 import './styles/calendar.css';
 
 const initialItems = [
-  { id: 1, img: '/image/img1.jpg', title: 'Farewell', type: 'FLOWER', desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti temporibus quis eum consequuntur voluptate quae doloribus distinctio.' },
-  { id: 2, img: '/image/img2.jpg', title: 'Farewell', type: 'NATURE', desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti temporibus quis eum consequuntur voluptate quae doloribus distinctio.' },
-  { id: 3, img: '/image/img4.jpg', title: 'Farewell', type: 'PLANT', desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti temporibus quis eum consequuntur voluptate quae doloribus distinctio.' },
-  { id: 4, img: '/image/img3.jpg', title: 'Farewell', type: 'NATURE', desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti temporibus quis eum consequuntur voluptate quae doloribus distinctio.' },
+  { id: 1, img: img1, title: 'Farewell', type: 'FLOWER', desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti temporibus quis eum consequuntur voluptate quae doloribus distinctio.' },
+  { id: 2, img: img2, title: 'Farewell', type: 'NATURE', desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti temporibus quis eum consequuntur voluptate quae doloribus distinctio.' },
+  { id: 4, img: img3, title: 'Farewell', type: 'PLANT', desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti temporibus quis eum consequuntur voluptate quae doloribus distinctio.' },
+  { id: 3, img: img4, title: 'Farewell', type: 'NATURE', desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti temporibus quis eum consequuntur voluptate quae doloribus distinctio.' },
 ];
 
 const wait = (ms) => new Promise((res) => setTimeout(res, ms));

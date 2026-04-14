@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import imgBg from '../../image/img4.jpg';
 
 const InvitationScreen = ({ setPhase }) => {
   const streakRef = useRef(null);
@@ -89,7 +89,7 @@ const InvitationScreen = ({ setPhase }) => {
       {/* Background image */}
       <div style={{
         position: 'absolute', inset: 0,
-        backgroundImage: 'url(/image/img4.jpg)',
+        backgroundImage: `url(${imgBg})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center top',
         opacity: 0.12,
