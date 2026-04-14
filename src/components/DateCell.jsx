@@ -180,8 +180,8 @@ export default function DateCell({
                 scale: [1, 1.5, 5, 80],
                 rotate: [0, 0, 2],
                 zIndex: 99999,
-                background: "#c9b896",
-                boxShadow: "0 0 100px rgba(201, 184, 150, 0.6)",
+                background: "var(--accent-gold)",
+                boxShadow: "0 0 100px rgba(255, 215, 0, 0.6)",
               }
             : phase === "animate"
               ? { 
@@ -253,14 +253,14 @@ export default function DateCell({
           >
             <motion.circle
               cx="50" cy="50" r="30"
-              stroke="#d32f2f"
+              stroke="var(--accent-gold)"
               strokeWidth="4"
               fill="transparent"
               initial={{ pathLength: 0, rotate: -90 }}
               animate={{ pathLength: 1 }}
               exit={{ opacity: 0, scale: 0 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              style={{ filter: 'drop-shadow(0 0 5px rgba(211, 47, 47, 0.8))' }}
+              style={{ filter: 'drop-shadow(0 0 5px rgba(255, 215, 0, 0.8))' }}
             />
           </svg>
         )}
@@ -277,9 +277,9 @@ export default function DateCell({
               position: "absolute", top: "50%", left: "50%",
               width: "60px", height: "60px",
               marginTop: "-30px", marginLeft: "-30px",
-              border: "2px solid #d32f2f", borderRadius: "50%",
+              border: "2px solid var(--accent-gold)", borderRadius: "50%",
               pointerEvents: "none", zIndex: 10,
-              boxShadow: "0 0 10px red"
+              boxShadow: "0 0 10px var(--accent-gold)"
             }}
           />
         )}
@@ -298,7 +298,7 @@ export default function DateCell({
                 style={{
                   position: 'absolute', top: '-4px', left: '-4px',
                   width: `${p.size}px`, height: `${p.size}px`, borderRadius: '50%',
-                  background: '#14ff72', boxShadow: '0 0 10px #14ff72'
+                  background: 'var(--accent-gold)', boxShadow: '0 0 10px var(--accent-gold)'
                 }}
               />
             ))}

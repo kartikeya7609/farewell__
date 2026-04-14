@@ -3,51 +3,59 @@ import { motion } from 'framer-motion';
 
 const VaultLogin = ({ passcode, setPasscode, isError, startSequence }) => {
   return (
-    <div className="front-page">
-      <div className="bank-card">
+    <div className="front-page" style={{ background: 'var(--bg-dark)' }}>
+      <div className="bank-card" style={{ background: 'var(--surface)', borderColor: 'var(--glass-border)' }}>
         <div className="bank-header">
-          <h3 style={{ color: '#1a237e' }}>IEEE BANK</h3>
-          <p style={{ color: 'var(--accent-dim)' }}>The Memories Vault</p>
+          <h3 style={{ 
+            background: 'linear-gradient(135deg, #fff 0%, var(--gold) 50%, #ffd700 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            letterSpacing: '8px'
+          }}>THE ETERNAL VAULT</h3>
+          <p style={{ color: 'var(--accent-dim)', letterSpacing: '4px' }}>Legacy of IEEE Student Branch</p>
         </div>
         <div className="bank-form">
           <div className="bank-input">
-            <label style={{ color: isError ? '#ff4b2b' : 'var(--accent)' }}>
-              {isError ? 'Invalid Passcode' : 'Enter Passcode'}
+            <label style={{ color: isError ? '#ff4b2b' : 'var(--accent)', fontSize: '0.65rem' }}>
+              {isError ? 'Access Denied: Invalid Key' : 'Enter Secret Passcode'}
             </label>
             <input
               type="text"
-              placeholder="e.g. FAREWELL2026"
+              placeholder="e.g. MISSION-COMPLETE"
               value={passcode}
               onChange={(e) => setPasscode(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && startSequence()}
               autoComplete="off"
               spellCheck={false}
               style={{
-                borderColor: isError ? '#ff4b2b' : 'rgba(201,184,150,0.2)',
-                background: 'rgba(201,184,150,0.03)',
-                color: 'var(--accent)',
-                textTransform: 'uppercase', letterSpacing: '2px'
+                borderColor: isError ? '#ff4b2b' : 'var(--glass-border)',
+                background: 'rgba(255, 255, 255, 0.02)',
+                color: 'var(--text-primary)',
+                textTransform: 'uppercase', 
+                letterSpacing: '3px',
+                fontSize: '0.9rem'
               }}
             />
-            <p style={{ fontSize: '0.6rem', color: 'var(--accent-trace)', marginTop: '10px', textAlign: 'center' }}>
-              The vault is sealed. Enter the secret code.
+            <p style={{ fontSize: '0.6rem', color: 'var(--text-faint)', marginTop: '12px', textAlign: 'center', fontStyle: 'italic' }}>
+              Only those with the key may witness the memories.
             </p>
           </div>
           <motion.button
             className="withdraw-btn"
             animate={isError ? { x: [-10, 10, -10, 10, 0] } : {}}
             transition={{ duration: 0.4 }}
-            whileHover={{ scale: 1.02, backgroundColor: 'var(--accent)', color: '#000' }}
+            whileHover={{ scale: 1.02, backgroundColor: 'var(--accent)', color: '#001' }}
             whileTap={{ scale: 0.98 }}
             onClick={startSequence}
             style={{
                background: 'var(--accent-trace)',
                border: '1px solid var(--accent-dim)',
                color: 'var(--accent)',
-               letterSpacing: '5px'
+               letterSpacing: '4px',
+               fontWeight: '500'
             }}
           >
-            ENTER THE VAULT
+            UNLOCK MEMORIES
           </motion.button>
         </div>
       </div>

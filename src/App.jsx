@@ -131,7 +131,7 @@ function App() {
       <div style={{
         width: '100vw', height: '100vh', overflow: 'hidden',
         display: 'flex', justifyContent: 'center', alignItems: 'center',
-        background: '#000', position: 'relative'
+        background: 'var(--bg-dark)', position: 'relative'
       }}>
         <div style={{ width: '100%', height: '100%', zIndex: 10 }}>
           <Calendar phase={phase} />

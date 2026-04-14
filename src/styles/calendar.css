@@ -2,13 +2,13 @@
    CALENDAR DESIGN SYSTEM (DARK & GOLD)
    ════════════════════════════════════════ */
 :root {
-  --bg-deep: #050507;
-  --bg-surface: #0a0a0a;
-  --accent-gold: #c9b896;
-  --accent-gold-dim: rgba(201, 184, 150, 0.45);
-  --text-primary: #f0ede8;
-  --text-muted: rgba(240, 237, 232, 0.4);
-  --glass-border: rgba(255, 255, 255, 0.08);
+  --bg-deep: #002147;
+  --bg-surface: #001a38;
+  --accent-gold: #ffd700;
+  --accent-gold-dim: rgba(255, 215, 0, 0.45);
+  --text-primary: #f0f8ff;
+  --text-muted: rgba(240, 248, 255, 0.5);
+  --glass-border: rgba(255, 255, 255, 0.1);
   --grid-line: rgba(255, 255, 255, 0.04);
 }
 
@@ -140,7 +140,7 @@
   font-size: 0.6rem;
   text-transform: uppercase;
   letter-spacing: 4px;
-  color: #1a237e; /* Midnight Blue */
+  color: var(--accent-gold);
   font-weight: 600;
 }
 

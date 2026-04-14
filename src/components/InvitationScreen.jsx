@@ -12,7 +12,7 @@ const InvitationScreen = ({ setPhase }) => {
       style={{
         width: '100vw',
         minHeight: '100vh',
-        background: '#0a0a0a',
+        background: 'var(--bg-dark)',
         display: 'flex',
         position: 'relative',
         overflow: 'hidden',
@@ -89,10 +89,11 @@ const InvitationScreen = ({ setPhase }) => {
       {/* Background image */}
       <div style={{
         position: 'absolute', inset: 0,
+        backgroundImage: 'url(/image/img4.jpg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center top',
-        opacity: 0.18,
-        filter: 'saturate(0.35)',
+        opacity: 0.12,
+        filter: 'saturate(0) brightness(1.2)',
       }} />
 
       {/* Animated top streak */}
@@ -136,13 +137,13 @@ const InvitationScreen = ({ setPhase }) => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.4 }}
             style={{
-              fontSize: 10, letterSpacing: 6, color: '#1a237e',
+              fontSize: 10, letterSpacing: 6, color: 'var(--accent)',
               textTransform: 'uppercase', margin: '0 0 28px',
               fontWeight: 500,
               display: 'flex', alignItems: 'center', gap: 12,
             }}
           >
-            <span style={{ display: 'block', width: 32, height: '0.5px', background: '#1a237e' }} />
+            <span style={{ display: 'block', width: 32, height: '0.5px', background: 'var(--accent)' }} />
             IEEE · NIT Durgapur · 2026
           </motion.p>
 
@@ -155,15 +156,15 @@ const InvitationScreen = ({ setPhase }) => {
               fontFamily: "'Playfair Display', serif",
               fontSize: 'clamp(2.8rem, 6vw, 5rem)',
               fontWeight: 400,
-              color: 'var(--accent)',
+              color: 'var(--text-primary)',
               lineHeight: 1.08,
               margin: '0 0 10px',
               letterSpacing: '-0.5px',
               animation: 'glowPulse 5s ease-in-out infinite',
             }}
           >
-            Welcome to<br />
-            <em style={{ color: '#c9b896', fontStyle: 'italic' }}>the Farewell</em>
+            Celebrating the<br />
+            <em style={{ color: 'var(--gold)', fontStyle: 'italic' }}>Journey of Excellence</em>
           </motion.h1>
 
           {/* Subtitle */}
@@ -247,7 +248,8 @@ const InvitationScreen = ({ setPhase }) => {
             flexDirection: 'column',
             justifyContent: 'center',
             padding: '72px 48px',
-            background: 'rgba(255,255,255,0.02)',
+            background: 'var(--surface)',
+            borderLeft: '0.5px solid var(--glass-border)',
           }}
         >
           <p style={{
