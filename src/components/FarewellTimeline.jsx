@@ -165,21 +165,6 @@ const FarewellTimeline = () => {
           </div>
         </div>
 
-        <button style={{
-          background: 'transparent',
-          border: '1px solid var(--gold)',
-          color: 'var(--gold)',
-          padding: '15px 40px',
-          letterSpacing: '5px',
-          fontSize: '0.8rem',
-          cursor: 'pointer',
-          transition: '0.4s'
-        }}
-          onMouseOver={(e) => { e.target.style.background = 'var(--gold)'; e.target.style.color = '#000'; }}
-          onMouseOut={(e) => { e.target.style.background = 'transparent'; e.target.style.color = 'var(--gold)'; }}
-        >
-          CONFIRM ATTENDANCE
-        </button>
       </motion.div>
 
       {/* SECTION 3: HEARTFELT QUOTE */}
