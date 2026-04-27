@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import './index.css';
 
@@ -135,18 +135,32 @@ function App() {
     }
   }, [phase]);
 
-  const moveSlider = (direction) => {
+  const moveSlider = useCallback((direction) => {
     if (animating) return;
-    setAnimating(true);
-    setSlideDir(direction);
     setItems((prev) => {
       const next = [...prev];
       if (direction === 'next') next.push(next.shift());
       else next.unshift(next.pop());
       return next;
     });
-    setTimeout(() => { setAnimating(false); setSlideDir(''); }, 800);
-  };
+    setSlideDir(direction);
+    setAnimating(true);
+    setTimeout(() => { 
+      setAnimating(false); 
+      setSlideDir(''); 
+    }, 800);
+  }, [animating]);
+
+  // ── Autoplay for Slider ──
+  useEffect(() => {
+    let interval;
+    if (phase === 'slider') {
+      interval = setInterval(() => {
+        moveSlider('next');
+      }, 2800); // 2s gap + 0.8s animation
+    }
+    return () => clearInterval(interval);
+  }, [phase, moveSlider]);
 
   // ── Render Phases ──
   if (phase === 'front') {
