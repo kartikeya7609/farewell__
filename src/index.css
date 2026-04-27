@@ -134,30 +134,18 @@ body {
 .bank-card {
     position: relative;
     z-index: 10;
-    background: var(--surface);
-    border: var(--border-fine);
-    border-top: 0.5px solid rgba(255, 255, 255, 0.13);
+    background: var(--bg-dark); /* Same as background for neumorphism */
     padding: clamp(2.5rem, 5vw, 3.5rem) clamp(2rem, 5vw, 3rem);
-    border-radius: 20px;
-    backdrop-filter: blur(36px);
-    -webkit-backdrop-filter: blur(36px);
+    border-radius: 40px;
     width: min(460px, 92%);
-    box-shadow: var(--depth-shadow);
+    box-shadow: 20px 20px 60px #001227, -10px -10px 40px rgba(0, 51, 108, 0.4);
     text-align: center;
-    overflow: hidden;
+    border: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
 }
 
 /* Top gleam */
-.bank-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 10%;
-    right: 10%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
-    pointer-events: none;
-}
 
 .bank-header h3 {
     font-family: 'Cormorant Garamond', serif;
@@ -200,22 +188,24 @@ body {
 
 .bank-input input {
     width: 100%;
-    padding: 14px 18px;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.035);
-    border: var(--border-fine);
+    padding: 16px 20px;
+    border-radius: 15px;
+    background: var(--bg-dark);
+    border: none;
+    box-shadow: inset 6px 6px 12px #001227, inset -4px -4px 10px rgba(0, 51, 108, 0.4);
     color: var(--text-primary);
     font-family: 'Montserrat', sans-serif;
-    font-weight: 300;
-    font-size: 0.8rem;
-    letter-spacing: 3px;
+    font-weight: 400;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
     outline: none;
-    transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
+    transition: box-shadow 0.3s ease;
 }
 
 .bank-input input::placeholder {
     color: var(--text-faint);
     letter-spacing: 2px;
+    opacity: 0.5;
 }
 
 .bank-input input:focus {
@@ -226,26 +216,31 @@ body {
 
 .withdraw-btn {
     width: 100%;
-    padding: 16px;
-    border-radius: 8px;
-    border: 0.5px solid rgba(20, 255, 114, 0.38);
-    background: var(--accent-trace);
+    padding: 18px;
+    border-radius: 15px;
+    border: none;
+    background: var(--bg-dark);
+    box-shadow: 8px 8px 16px #001227, -6px -6px 12px rgba(0, 51, 108, 0.4);
     color: var(--accent);
     font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    font-size: 0.68rem;
+    font-weight: 600;
+    font-size: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: 5px;
+    letter-spacing: 4px;
     cursor: pointer;
-    margin-top: 6px;
-    transition: background 0.4s, color 0.4s, border-color 0.4s, box-shadow 0.4s;
+    margin-top: 15px;
+    transition: all 0.3s ease;
 }
 
 .withdraw-btn:hover {
-    background: var(--accent);
-    color: #000;
-    border-color: var(--accent);
-    box-shadow: 0 0 40px var(--accent-glow), 0 0 80px rgba(20, 255, 114, 0.06);
+    box-shadow: 4px 4px 8px #001227, -3px -3px 6px rgba(0, 51, 108, 0.4);
+    transform: translateY(2px);
+    color: var(--gold);
+}
+
+.withdraw-btn:active {
+    box-shadow: inset 4px 4px 8px #001227, inset -3px -3px 6px rgba(0, 51, 108, 0.4);
+    transform: translateY(0);
 }
 
 /* ══════════════════════════════════════════════════════

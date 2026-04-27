@@ -3,20 +3,19 @@ import { motion } from 'framer-motion';
 
 const VaultLogin = ({ passcode, setPasscode, isError, startSequence }) => {
   return (
-    <div className="front-page" style={{ background: 'var(--bg-dark)' }}>
-      <div className="bank-card" style={{ background: 'var(--surface)', borderColor: 'var(--glass-border)' }}>
+    <div className="front-page">
+      <div className="bank-card">
         <div className="bank-header">
-          <h3 style={{ 
-            background: 'linear-gradient(135deg, #fff 0%, var(--gold) 50%, #ffd700 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            letterSpacing: '8px'
-          }}>THE ETERNAL VAULT</h3>
-          <p style={{ color: 'var(--accent-dim)', letterSpacing: '4px' }}>Legacy of IEEE Student Branch</p>
+          <h3>THE ETERNAL VAULT</h3>
+          <p>Legacy of IEEE Student Branch</p>
         </div>
         <div className="bank-form">
-          <div className="bank-input">
-            <label style={{ color: isError ? '#ff4b2b' : 'var(--accent)', fontSize: '0.65rem' }}>
+          <div className="bank-input" style={{ marginTop: '20px' }}>
+            <label style={{ 
+              color: isError ? '#ff4b2b' : 'var(--accent)', 
+              fontSize: '0.65rem',
+              textShadow: isError ? '0 0 10px rgba(255, 75, 43, 0.3)' : 'none'
+            }}>
               {isError ? 'Access Denied: Invalid Key' : 'Enter Secret Passcode'}
             </label>
             <input
@@ -28,15 +27,10 @@ const VaultLogin = ({ passcode, setPasscode, isError, startSequence }) => {
               autoComplete="off"
               spellCheck={false}
               style={{
-                borderColor: isError ? '#ff4b2b' : 'var(--glass-border)',
-                background: 'rgba(255, 255, 255, 0.02)',
-                color: 'var(--text-primary)',
-                textTransform: 'uppercase', 
-                letterSpacing: '3px',
-                fontSize: '0.9rem'
+                boxShadow: isError ? 'inset 6px 6px 12px #001227, inset -4px -4px 10px rgba(255, 75, 43, 0.2)' : undefined
               }}
             />
-            <p style={{ fontSize: '0.6rem', color: 'var(--text-faint)', marginTop: '12px', textAlign: 'center', fontStyle: 'italic' }}>
+            <p style={{ fontSize: '0.6rem', color: 'var(--text-faint)', marginTop: '20px', textAlign: 'center', fontStyle: 'italic', letterSpacing: '1px' }}>
               Only those with the key may witness the memories.
             </p>
           </div>
@@ -44,16 +38,9 @@ const VaultLogin = ({ passcode, setPasscode, isError, startSequence }) => {
             className="withdraw-btn"
             animate={isError ? { x: [-10, 10, -10, 10, 0] } : {}}
             transition={{ duration: 0.4 }}
-            whileHover={{ scale: 1.02, backgroundColor: 'var(--accent)', color: '#001' }}
+            whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={startSequence}
-            style={{
-               background: 'var(--accent-trace)',
-               border: '1px solid var(--accent-dim)',
-               color: 'var(--accent)',
-               letterSpacing: '4px',
-               fontWeight: '500'
-            }}
           >
             UNLOCK MEMORIES
           </motion.button>

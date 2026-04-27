@@ -3,8 +3,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import './index.css';
 
 // Import Images directly for Vite to bundle them
-import img1 from '../image/img1.jpg';
-import img2 from '../image/img2.jpg';
+import img1 from '../image/img1.jpeg';
+import img2 from '../image/img2.jpeg';
 import img3 from '../image/img3.jpg';
 import img4 from '../image/img4.jpg';
 
@@ -14,6 +14,7 @@ import VaultLogin from './components/VaultLogin';
 import Loader from './components/Loader';
 import ImageSlider from './components/ImageSlider';
 import InvitationScreen from './components/InvitationScreen';
+import InvitationCard from './components/InvitationCard';
 
 // Styles
 import './styles/calendar.css';
@@ -57,20 +58,12 @@ function App() {
   const startSequence = async () => {
     if (validPasscodes.includes(passcode.toUpperCase())) {
       setIsError(false);
-      localStorage.setItem('vaultUnlocked', 'true');
       runCinematicSequence();
     } else {
       setIsError(true);
       setTimeout(() => setIsError(false), 2000);
     }
   };
-
-  useEffect(() => {
-    const isUnlocked = localStorage.getItem('vaultUnlocked');
-    if (isUnlocked === 'true') {
-      runCinematicSequence();
-    }
-  }, []);
 
   useEffect(() => {
     // ── Phase-based Scroll Control ───────────────────────────
@@ -173,6 +166,10 @@ function App() {
 
   if (phase === 'parallax') {
     return <InvitationScreen setPhase={setPhase} />;
+  }
+
+  if (phase === 'invitation_card') {
+    return <InvitationCard setPhase={setPhase} />;
   }
 
   return null;

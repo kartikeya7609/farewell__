@@ -1,298 +1,233 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import imgBg from '../../image/img4.jpg';
+import FarewellTimeline from './FarewellTimeline';
 
 const InvitationScreen = ({ setPhase }) => {
-  const streakRef = useRef(null);
+  // Animation Variants for staggering
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15, delayChildren: 0.2 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 15 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+  };
+
+  const lineReveal = {
+    hidden: { width: 0 },
+    visible: { width: "100%", transition: { duration: 1.2, ease: "easeInOut" } }
+  };
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
       style={{
         width: '100vw',
         minHeight: '100vh',
         background: 'var(--bg-dark)',
         display: 'flex',
+        flexDirection: 'column',
         position: 'relative',
-        overflow: 'hidden',
         fontFamily: "'Montserrat', sans-serif",
       }}
     >
-      {/* Google Fonts */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@200;300;400&display=swap');
 
         .inv-btn {
           display: block;
           width: 100%;
-          padding: 16px 24px;
+          padding: 18px 24px;
           background: transparent;
-          border: 0.5px solid rgba(201,184,150,0.18);
+          border: 1px solid rgba(158,143,115,0.15);
           color: var(--accent-dim);
           font-family: 'Montserrat', sans-serif;
-          font-size: 9px;
-          letter-spacing: 5px;
+          font-size: 10px;
+          letter-spacing: 4px;
           text-transform: uppercase;
           cursor: pointer;
-          margin-bottom: 12px;
-          transition: all 0.4s ease;
-          font-weight: 300;
+          margin-bottom: 16px;
+          transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
           text-align: left;
           position: relative;
+          overflow: hidden;
         }
-        .inv-btn:hover {
-          border-color: #9e8f73;
-          color: #f0ebe0;
-          background: rgba(158,143,115,0.08);
-        }
-        .inv-btn-primary {
-          background: rgba(158,143,115,0.12);
-          border-color: rgba(158,143,115,0.5);
-          color: #c9b896;
-        }
-        .inv-btn-primary:hover {
-          background: rgba(158,143,115,0.22);
-          color: #f0ebe0;
-        }
-        .inv-btn-arrow {
+
+        .inv-btn::before {
+          content: '';
           position: absolute;
-          right: 20px;
-          top: 50%;
-          transform: translateY(-50%);
-          font-size: 14px;
-          color: #9e8f73;
-          opacity: 0;
-          transition: opacity 0.3s ease;
-        }
-        .inv-btn:hover .inv-btn-arrow { opacity: 1; }
-
-        @keyframes streakMove {
-          0%   { left: -60%; opacity: 0; }
-          20%  { opacity: 1; }
-          80%  { opacity: 1; }
-          100% { left: 100%; opacity: 0; }
-        }
-        @keyframes glowPulse {
-          0%, 100% { text-shadow: 0 0 40px rgba(201,184,150,0.08); }
-          50%       { text-shadow: 0 0 80px rgba(201,184,150,0.18); }
+          top: 0; left: -100%;
+          width: 100%; height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(158,143,115,0.1), transparent);
+          transition: 0.5s;
         }
 
-        @media (max-width: 700px) {
+        .inv-btn:hover::before { left: 100%; }
+
+        .inv-btn:hover {
+          border-color: var(--gold);
+          padding-left: 32px;
+          color: #fff;
+          background: rgba(158,143,115,0.05);
+        }
+
+        .inv-btn-primary { background: rgba(158,143,115,0.08); border-color: rgba(158,143,115,0.4); }
+
+        @keyframes subtleZoom {
+          from { transform: scale(1.0); }
+          to { transform: scale(1.1); }
+        }
+
+        @media (max-width: 900px) {
           .inv-layout { flex-direction: column !important; }
-          .inv-right-panel { width: auto !important; border-left: none !important; border-top: 0.5px solid rgba(255,255,255,0.06) !important; }
-          .inv-left-panel { padding: 48px 28px 32px !important; }
-          .inv-right-panel { padding: 32px 28px 48px !important; }
+          .inv-right-panel { width: 100% !important; border-left: none !important; border-top: 1px solid rgba(255,255,255,0.05) !important; }
+          .inv-left-panel { padding: 40px 24px !important; }
         }
       `}</style>
 
-      {/* Background image */}
+      {/* --- Background with Ken Burns Effect --- */}
       <div style={{
-        position: 'absolute', inset: 0,
+        position: 'absolute', top: 0, left: 0, width: '100%', height: '100vh',
         backgroundImage: `url(${imgBg})`,
         backgroundSize: 'cover',
-        backgroundPosition: 'center top',
-        opacity: 0.12,
-        filter: 'saturate(0) brightness(1.2)',
+        backgroundPosition: 'center',
+        opacity: 0.15,
+        filter: 'grayscale(100%) contrast(1.2)',
+        animation: 'subtleZoom 20s infinite alternate ease-in-out',
+        zIndex: 0,
+        pointerEvents: 'none'
       }} />
 
-      {/* Animated top streak */}
-      <div style={{
-        position: 'absolute', top: 0, left: '-60%',
-        width: '60%', height: '0.5px',
-        background: 'linear-gradient(to right, transparent, rgba(158,143,115,0.5), transparent)',
-        animation: 'streakMove 6s ease-in-out infinite',
-        zIndex: 1,
-      }} />
+      {/* Main Layout (The Invitation Hub) */}
+      <div className="inv-layout" style={{ display: 'flex', width: '100%', minHeight: '100vh', zIndex: 3, position: 'relative' }}>
 
-      {/* Corner accents */}
-      {[
-        { top: 24, left: 24, borderTop: '0.5px solid #9e8f73', borderLeft: '0.5px solid #9e8f73' },
-        { bottom: 24, right: 24, borderBottom: '0.5px solid #9e8f73', borderRight: '0.5px solid #9e8f73' },
-      ].map((s, i) => (
-        <div key={i} style={{ position: 'absolute', width: 40, height: 40, opacity: 0.3, zIndex: 2, ...s }} />
-      ))}
+        {/* LEFT PANEL */}
+        <div className="inv-left-panel" style={{
+          flex: 1, padding: '80px 60px',
+          display: 'flex', flexDirection: 'column', justifyContent: 'center',
+          borderRight: '1px solid rgba(255,255,255,0.05)'
+        }}>
 
-      {/* Main layout */}
-      <div className="inv-layout" style={{ display: 'flex', width: '100%', position: 'relative', zIndex: 3 }}>
+          <motion.div variants={itemVariants} style={{ display: 'flex', alignItems: 'center', gap: 15, marginBottom: 30 }}>
+            <motion.div variants={lineReveal} style={{ height: '1px', background: 'var(--accent)' }} />
+            <span style={{ fontSize: 10, letterSpacing: 5, color: 'var(--accent)', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>
+              IEEE · NIT Durgapur · 2026
+            </span>
+          </motion.div>
 
-        {/* ── LEFT: Main content ── */}
-        <motion.div
-          className="inv-left-panel"
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.15, ease: 'easeOut' }}
-          style={{
-            flex: 1,
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            padding: '72px 64px',
-            borderRight: '0.5px solid rgba(255,255,255,0.06)',
-          }}
-        >
-          {/* Eyebrow */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.4 }}
-            style={{
-              fontSize: 10, letterSpacing: 6, color: 'var(--accent)',
-              textTransform: 'uppercase', margin: '0 0 28px',
-              fontWeight: 500,
-              display: 'flex', alignItems: 'center', gap: 12,
-            }}
-          >
-            <span style={{ display: 'block', width: 32, height: '0.5px', background: 'var(--accent)' }} />
-            IEEE · NIT Durgapur · 2026
+          <motion.div variants={itemVariants}>
+            <h1 style={{
+              fontFamily: "'Playfair Display', serif",
+              fontSize: 'clamp(2.5rem, 5.5vw, 4.5rem)',
+              fontWeight: 400, color: '#fff', lineHeight: 1.1, margin: 0
+            }}>
+              Celebrating the<br />
+              <motion.span
+                style={{ color: 'var(--gold)', fontStyle: 'italic', display: 'inline-block' }}
+                initial={{ clipPath: 'inset(0 100% 0 0)' }}
+                animate={{ clipPath: 'inset(0 0% 0 0)' }}
+                transition={{ duration: 1.5, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              >
+                Journey of Excellence
+              </motion.span>
+            </h1>
+          </motion.div>
+
+          <motion.p variants={itemVariants} style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: '1.2rem', color: 'rgba(201,184,150,0.7)',
+            fontStyle: 'italic', margin: '15px 0 40px'
+          }}>
+            An evening of memories & celebration
           </motion.p>
 
-          {/* Title */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.25, duration: 0.5, ease: 'easeOut' }}
-            style={{
-              fontFamily: "'Playfair Display', serif",
-              fontSize: 'clamp(2.8rem, 6vw, 5rem)',
-              fontWeight: 400,
-              color: 'var(--text-primary)',
-              lineHeight: 1.08,
-              margin: '0 0 10px',
-              letterSpacing: '-0.5px',
-              animation: 'glowPulse 5s ease-in-out infinite',
-            }}
-          >
-            Celebrating the<br />
-            <em style={{ color: 'var(--gold)', fontStyle: 'italic' }}>Journey of Excellence</em>
-          </motion.h1>
-
-          {/* Subtitle */}
-          <p style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontSize: '1.1rem',
-            color: 'var(--accent-dim)',
-            fontWeight: 300,
-            letterSpacing: 1,
-            margin: '0 0 48px',
-            fontStyle: 'italic',
-          }}>
-            An evening of memories &amp; celebration
-          </p>
-
-          {/* Divider */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 40 }}>
-            <div style={{
-              flex: 1, height: '0.5px',
-              background: 'linear-gradient(to right, rgba(158,143,115,0.6), transparent)',
-            }} />
-            <div style={{ width: 5, height: 5, background: '#9e8f73', transform: 'rotate(45deg)' }} />
-          </div>
-
-          {/* Quote */}
-          <motion.blockquote
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.45, duration: 0.5 }}
-            style={{
+          <motion.div variants={itemVariants} style={{ position: 'relative', paddingLeft: 25, margin: '40px 0' }}>
+            <motion.div
+              initial={{ height: 0 }}
+              animate={{ height: "100%" }}
+              transition={{ duration: 1, delay: 1.2 }}
+              style={{ position: 'absolute', left: 0, top: 0, width: '2px', background: 'var(--gold)', opacity: 0.5 }}
+            />
+            <blockquote style={{
               fontFamily: "'Cormorant Garamond', serif",
-              fontSize: '1.2rem',
-              fontStyle: 'italic',
-              color: 'var(--accent-dim)',
-              lineHeight: 1.8,
-              fontWeight: 300,
-              margin: '0 0 48px',
-              paddingLeft: 20,
-              borderLeft: '1.5px solid rgba(158,143,115,0.4)',
-            }}
-          >
-            "Don't cry because it's over —<br />
-            smile because it happened."
-          </motion.blockquote>
+              fontSize: '1.35rem', fontStyle: 'italic', color: '#f0ebe0',
+              lineHeight: 1.6, margin: 0, fontWeight: 300
+            }}>
+              "Don't cry because it's over —<br />
+              smile because it happened."
+            </blockquote>
+          </motion.div>
 
-          {/* Meta */}
-          <div>
-            {[
-              { label: 'Hosted by', value: 'IEEE Student Branch' },
-              { label: 'Occasion', value: 'Farewell 2025 – 26' },
-            ].map(({ label, value }) => (
-              <div key={label} style={{ marginBottom: 16 }}>
-                <p style={{ fontSize: 9, letterSpacing: 4, color: 'var(--accent-trace)', textTransform: 'uppercase', fontWeight: 300, margin: 0 }}>{label}</p>
-                <p style={{ fontSize: 13, letterSpacing: 2, color: 'var(--accent-dim)', fontWeight: 300, margin: '4px 0 0' }}>{value}</p>
-              </div>
-            ))}
-          </div>
+          <motion.div variants={itemVariants} style={{ display: 'flex', gap: 60, marginTop: 20 }}>
+            <div>
+              <p style={{ fontSize: 8, letterSpacing: 3, color: '#9e8f73', textTransform: 'uppercase', marginBottom: 8 }}>Hosted by</p>
+              <p style={{ fontSize: 13, color: 'var(--accent-dim)', fontWeight: 300 }}>IEEE Student Branch</p>
+            </div>
+            <div>
+              <p style={{ fontSize: 8, letterSpacing: 3, color: '#9e8f73', textTransform: 'uppercase', marginBottom: 8 }}>Occasion</p>
+              <p style={{ fontSize: 13, color: 'var(--accent-dim)', fontWeight: 300 }}>Farewell 2025 – 26</p>
+            </div>
+          </motion.div>
+        </div>
 
-          {/* Bottom ornament */}
-          <div style={{
-            position: 'absolute', bottom: 40, left: 64,
-            display: 'flex', alignItems: 'center', gap: 10,
-          }}>
-            <div style={{ width: 3, height: 3, borderRadius: '50%', background: 'rgba(158,143,115,0.5)' }} />
-            <div style={{ width: 48, height: '0.5px', background: 'rgba(158,143,115,0.3)' }} />
-            <span style={{ fontSize: 9, letterSpacing: 4, color: 'rgba(158,143,115,0.5)', textTransform: 'uppercase', fontWeight: 300 }}>
-              Memories Vault
-            </span>
-          </div>
-        </motion.div>
-
-        {/* ── RIGHT: Buttons panel ── */}
+        {/* RIGHT PANEL */}
         <motion.div
           className="inv-right-panel"
-          initial={{ opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+          variants={itemVariants}
           style={{
-            width: 320,
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            padding: '72px 48px',
-            background: 'var(--surface)',
-            borderLeft: '0.5px solid var(--glass-border)',
+            width: 350, background: 'rgba(0,0,0,0.2)',
+            backdropFilter: 'blur(10px)',
+            padding: '80px 45px',
+            display: 'flex', flexDirection: 'column', justifyContent: 'center'
           }}
         >
-          <p style={{
-            fontSize: 9, letterSpacing: 5, color: '#9e8f73',
-            textTransform: 'uppercase', fontWeight: 300, margin: '0 0 32px',
-          }}>
-            Continue to
-          </p>
+          <motion.p variants={itemVariants} style={{ fontSize: 9, letterSpacing: 5, color: '#9e8f73', textTransform: 'uppercase', marginBottom: 35 }}>
+            Explore the Vault
+          </motion.p>
 
-          <button className="inv-btn inv-btn-primary" >
+          <button className="inv-btn inv-btn-primary" onClick={() => setPhase('invitation_card')}>
             Invitation Card
-            <span className="inv-btn-arrow">→</span>
           </button>
 
           <button className="inv-btn" onClick={() => setPhase('slider')}>
             Memories
-            <span className="inv-btn-arrow">→</span>
           </button>
 
-          <button className="inv-btn" onClick={() => setPhase('gallery')}>
-            Gallery
-            <span className="inv-btn-arrow">→</span>
-          </button>
-
-          <div style={{
-            marginTop: 40,
-            paddingTop: 32,
-            borderTop: '0.5px solid rgba(255,255,255,0.06)',
-          }}>
-            <p style={{
-              fontSize: 9, letterSpacing: 3,
-              color: 'var(--accent)',
-              textTransform: 'uppercase', fontWeight: 300,
-              lineHeight: 2.2, margin: 0,
-            }}>
+          <motion.div
+            variants={itemVariants}
+            style={{ marginTop: 50, borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: 30 }}
+          >
+            <p style={{ fontSize: 10, letterSpacing: 3, color: 'var(--accent)', textTransform: 'uppercase', lineHeight: 1.8 }}>
               The journey ends here,<br />
               but the memories remain.
             </p>
-          </div>
+          </motion.div>
         </motion.div>
-
       </div>
+
+      {/* NEW CONTENT SECTION */}
+      <FarewellTimeline />
+
+      {/* Scroll Down Hint */}
+      <motion.div
+        animate={{ y: [0, 10, 0], opacity: [0.3, 0.6, 0.3] }}
+        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        style={{
+          position: 'absolute', top: '90vh', left: '50%', transform: 'translateX(-50%)',
+          zIndex: 4, textAlign: 'center', pointerEvents: 'none'
+        }}
+      >
+        <p style={{ fontSize: 8, letterSpacing: 4, color: 'var(--gold)', textTransform: 'uppercase' }}>Scroll Down</p>
+        <div style={{ width: '1px', height: '30px', background: 'var(--gold)', margin: '10px auto', opacity: 0.2 }} />
+      </motion.div>
+
     </motion.div>
   );
 };
