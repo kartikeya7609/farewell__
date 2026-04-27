@@ -5,7 +5,7 @@ const FarewellTimeline = () => {
   const achievements = [
     { year: '2022', title: 'The Foundation', desc: 'Starting the journey at NIT Durgapur, building bonds that last a lifetime.', icon: '🎓' },
     { year: '2023', title: 'Growth & Innovation', desc: 'Leading technical workshops, IEEE fests, and sleepless hackathon nights.', icon: '💡' },
-    { year: '2024', title: 'Excellence Achieved', desc: 'Securing top internships and leading the student branch to new heights.', icon: '🏆' },
+    { year: '2024', title: 'Excellence Achieved', desc: 'Excellence Achieved Securing top internships and leading the student branch to new heights.', icon: '🏆' },
     { year: '2025', title: 'The Legacy', desc: 'Preparing to step into the world, leaving behind a trail of inspiration.', icon: '✨' },
   ];
 
