@@ -29,7 +29,10 @@ const ImageSlider = ({ items, slideDir, moveSlider }) => {
               transitionDelay: index === 0 ? '0s' : '0.1s'
             }}
           >
-            <img src={item.img} alt={item.type} />
+            <div className="img-container">
+              <img src={item.img} alt="" className="bg-blur" />
+              <img src={item.img} alt={item.type} className="main-img" />
+            </div>
             <div className="content">
               <div className="title">Farewell</div>
 

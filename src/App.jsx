@@ -7,6 +7,8 @@ import img1 from '../image/img1.jpeg';
 import img2 from '../image/img2.jpeg';
 import img3 from '../image/img3.jpg';
 import img4 from '../image/img4.jpg';
+import img5 from '../image/img5.png';
+import img6 from '../image/img6.jpg';
 
 // Components
 import Calendar from './components/Calendar';
@@ -20,12 +22,49 @@ import InvitationCard from './components/InvitationCard';
 import './styles/calendar.css';
 
 const initialItems = [
-  { id: 1, img: img1, title: 'Farewell', type: 'FLOWER', desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti temporibus quis eum consequuntur voluptate quae doloribus distinctio.' },
-  { id: 2, img: img2, title: 'Farewell', type: 'NATURE', desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti temporibus quis eum consequuntur voluptate quae doloribus distinctio.' },
-  { id: 4, img: img3, title: 'Farewell', type: 'PLANT', desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti temporibus quis eum consequuntur voluptate quae doloribus distinctio.' },
-  { id: 3, img: img4, title: 'Farewell', type: 'NATURE', desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti temporibus quis eum consequuntur voluptate quae doloribus distinctio.' },
+  {
+    id: 1,
+    img: img1,
+    title: 'The Core Crew',
+    type: 'TEAM',
+    desc: 'The people who turned ordinary days into unforgettable chapters. Through assignments, chaos, and laughter, this group defined what together really means.'
+  },
+  {
+    id: 2,
+    img: img2,
+    title: 'Candid Connections',
+    type: 'MEMORIES',
+    desc: 'Unplanned moments, genuine smiles, and friendships that didn’t need effort. These are the memories that stay long after everything else fades.'
+  },
+  {
+    id: 3,
+    img: img3,
+    title: 'One Last Pose',
+    type: 'FAREWELL',
+    desc: 'A final frame before everyone takes different paths. Same people, same bond, just standing at the edge of something new.'
+  },
+  {
+    id: 4,
+    img: img4,
+    title: 'Stronger Together',
+    type: 'TEAM',
+    desc: 'Different personalities, one journey. Every challenge faced together made this group more than just classmates.'
+  },
+  {
+    id: 5,
+    img: img5,
+    title: 'Moments on Stage',
+    type: 'MILESTONES',
+    desc: 'From events to achievements, this stage saw it all. A place where confidence grew and memories were made louder.'
+  },
+  {
+    id: 6,
+    img: img6,
+    title: 'A Legacy That Stays',
+    type: 'LEGACY',
+    desc: 'Not just memories, but an impact that remains. The stories, friendships, and moments that will always define this batch.'
+  },
 ];
-
 const wait = (ms) => new Promise((res) => setTimeout(res, ms));
 
 function App() {

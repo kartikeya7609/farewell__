@@ -89,15 +89,31 @@ const InvitationCard = ({ setPhase }) => {
           transform-style: preserve-3d;
         }
 
-        .invitation-card-image {
+        .inv-img-container {
+          width: 100%;
+          height: 100%;
+          position: relative;
+          overflow: hidden;
+        }
+        .inv-bg-blur {
           width: 100%;
           height: 100%;
           object-fit: cover;
+          filter: blur(20px) brightness(0.3);
+          transform: scale(1.1);
+        }
+        .inv-main-img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          position: absolute;
+          inset: 0;
+          z-index: 1;
           display: block;
           transition: filter 0.5s ease;
         }
 
-        .invitation-card-container:hover .invitation-card-image {
+        .invitation-card-container:hover .inv-main-img {
           filter: contrast(1.1) saturate(1.1) brightness(1.1);
         }
 
@@ -181,7 +197,10 @@ const InvitationCard = ({ setPhase }) => {
         transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
       >
         <div className="invitation-card-inner">
-          <img src={invitationImg} alt="Farewell" className="invitation-card-image" />
+          <div className="inv-img-container">
+            <img src={invitationImg} alt="" className="inv-bg-blur" />
+            <img src={invitationImg} alt="Farewell" className="inv-main-img" />
+          </div>
 
           {/* Dynamic Light Reflection (Glare) */}
           <motion.div

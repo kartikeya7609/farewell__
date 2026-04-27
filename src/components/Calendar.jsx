@@ -56,17 +56,12 @@ export default function Calendar({ phase }) {
 
             <div
               className={`hero-image ${animationClass} ${isImageLoading ? 'image-blur' : 'image-clear'}`}
-              style={{
-                backgroundImage: monthImage ? `url(${monthImage})` : 'none',
-                opacity: isImageLoading ? 0.8 : 1,
-              }}
             >
               {!isImageLoading && monthImage && (
-                <img
-                  src={monthImage}
-                  alt=""
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                />
+                <div className="calendar-img-container">
+                   <img src={monthImage} alt="" className="calendar-bg-blur" />
+                   <img src={monthImage} alt="" className="calendar-main-img" />
+                </div>
               )}
               <img
                 src={monthImage}
