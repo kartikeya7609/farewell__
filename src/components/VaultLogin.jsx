@@ -11,8 +11,8 @@ const VaultLogin = ({ passcode, setPasscode, isError, startSequence }) => {
         </div>
         <div className="bank-form">
           <div className="bank-input" style={{ marginTop: '20px' }}>
-            <label style={{ 
-              color: isError ? '#ff4b2b' : 'var(--accent)', 
+            <label style={{
+              color: isError ? '#ff4b2b' : 'var(--accent)',
               fontSize: '0.65rem',
               textShadow: isError ? '0 0 10px rgba(255, 75, 43, 0.3)' : 'none'
             }}>
@@ -20,7 +20,7 @@ const VaultLogin = ({ passcode, setPasscode, isError, startSequence }) => {
             </label>
             <input
               type="text"
-              placeholder="e.g. MISSION-COMPLETE"
+              placeholder="e.g. FAREWELL2026"
               value={passcode}
               onChange={(e) => setPasscode(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && startSequence()}

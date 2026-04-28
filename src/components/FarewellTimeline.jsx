@@ -1,12 +1,48 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
+const GraduationCapIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ filter: 'drop-shadow(0px 0px 8px rgba(212,175,55,0.4))' }}>
+    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+    <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+  </svg>
+);
+
+const LightbulbIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ filter: 'drop-shadow(0px 0px 8px rgba(212,175,55,0.4))' }}>
+    <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1.3.5 2.6 1.5 3.5.8.8 1.3 1.5 1.5 2.5"/>
+    <path d="M9 18h6"/>
+    <path d="M10 22h4"/>
+  </svg>
+);
+
+const TrophyIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ filter: 'drop-shadow(0px 0px 8px rgba(212,175,55,0.4))' }}>
+    <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
+    <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
+    <path d="M4 22h16"/>
+    <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/>
+    <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/>
+    <path d="M18 2H6v7c0 3.31 2.69 6 6 6s6-2.69 6-6V2z"/>
+  </svg>
+);
+
+const SparklesIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ filter: 'drop-shadow(0px 0px 8px rgba(212,175,55,0.4))' }}>
+    <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+    <path d="M5 3v4"/>
+    <path d="M19 17v4"/>
+    <path d="M3 5h4"/>
+    <path d="M17 19h4"/>
+  </svg>
+);
+
 const FarewellTimeline = () => {
   const achievements = [
-    { year: '2022', title: 'The Foundation', desc: 'Starting the journey at NIT Durgapur, building bonds that last a lifetime.', icon: '🎓' },
-    { year: '2023', title: 'Growth & Innovation', desc: 'Leading technical workshops, IEEE fests, and sleepless hackathon nights.', icon: '💡' },
-    { year: '2024', title: 'Excellence Achieved', desc: 'Excellence Achieved Securing top internships and leading the student branch to new heights.', icon: '🏆' },
-    { year: '2025', title: 'The Legacy', desc: 'Preparing to step into the world, leaving behind a trail of inspiration.', icon: '✨' },
+    { year: '2022', title: 'The Foundation', desc: 'Starting the journey at NIT Durgapur, building bonds that last a lifetime.', icon: <GraduationCapIcon /> },
+    { year: '2023', title: 'Growth & Innovation', desc: 'Leading technical workshops, IEEE fests, and sleepless hackathon nights.', icon: <LightbulbIcon /> },
+    { year: '2024', title: 'Excellence Achieved', desc: 'Leading the student branch to new heights.', icon: <TrophyIcon /> },
+    { year: '2025', title: 'The Legacy', desc: 'Preparing to step into the world, leaving behind a trail of inspiration.', icon: <SparklesIcon /> },
   ];
 
   return (
